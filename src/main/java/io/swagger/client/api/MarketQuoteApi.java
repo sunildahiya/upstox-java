@@ -58,14 +58,14 @@ public class MarketQuoteApi {
 
     /**
      * Build call for getFullMarketQuote
-     * @param symbol Comma separated list of symbols (required)
+     * @param instrumentKey Comma separated list of instruments (required)
      * @param apiVersion API Version Header (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call getFullMarketQuoteCall(String symbol, String apiVersion, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call getFullMarketQuoteCall(String instrumentKey, String apiVersion, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -73,8 +73,8 @@ public class MarketQuoteApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (symbol != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("symbol", symbol));
+        if (instrumentKey != null)
+            localVarQueryParams.addAll(apiClient.parameterToPair("instrument_key", instrumentKey));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         if (apiVersion != null)
@@ -111,17 +111,17 @@ public class MarketQuoteApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getFullMarketQuoteValidateBeforeCall(String symbol, String apiVersion, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getFullMarketQuoteValidateBeforeCall(String instrumentKey, String apiVersion, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         // verify the required parameter 'symbol' is set
-        if (symbol == null) {
-            throw new ApiException("Missing the required parameter 'symbol' when calling getFullMarketQuote(Async)");
+        if (instrumentKey == null) {
+            throw new ApiException("Missing the required parameter 'instrumentKey' when calling getFullMarketQuote(Async)");
         }
         // verify the required parameter 'apiVersion' is set
         if (apiVersion == null) {
             throw new ApiException("Missing the required parameter 'apiVersion' when calling getFullMarketQuote(Async)");
         }
         
-        com.squareup.okhttp.Call call = getFullMarketQuoteCall(symbol, apiVersion, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getFullMarketQuoteCall(instrumentKey, apiVersion, progressListener, progressRequestListener);
         return call;
 
         
@@ -133,26 +133,26 @@ public class MarketQuoteApi {
     /**
      * Market quotes and instruments - Full market quotes
      * This API provides the functionality to retrieve the full market quotes for one or more instruments.This API returns the complete market data snapshot of up to 500 instruments in one go.
-     * @param symbol Comma separated list of symbols (required)
+     * @param instrumentKey Comma separated list of instrument (required)
      * @param apiVersion API Version Header (required)
      * @return GetFullMarketQuoteResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GetFullMarketQuoteResponse getFullMarketQuote(String symbol, String apiVersion) throws ApiException {
-        ApiResponse<GetFullMarketQuoteResponse> resp = getFullMarketQuoteWithHttpInfo(symbol, apiVersion);
+    public GetFullMarketQuoteResponse getFullMarketQuote(String instrumentKey, String apiVersion) throws ApiException {
+        ApiResponse<GetFullMarketQuoteResponse> resp = getFullMarketQuoteWithHttpInfo(instrumentKey, apiVersion);
         return resp.getData();
     }
 
     /**
      * Market quotes and instruments - Full market quotes
      * This API provides the functionality to retrieve the full market quotes for one or more instruments.This API returns the complete market data snapshot of up to 500 instruments in one go.
-     * @param symbol Comma separated list of symbols (required)
+     * @param instrumentKey Comma separated list of instruments (required)
      * @param apiVersion API Version Header (required)
      * @return ApiResponse&lt;GetFullMarketQuoteResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GetFullMarketQuoteResponse> getFullMarketQuoteWithHttpInfo(String symbol, String apiVersion) throws ApiException {
-        com.squareup.okhttp.Call call = getFullMarketQuoteValidateBeforeCall(symbol, apiVersion, null, null);
+    public ApiResponse<GetFullMarketQuoteResponse> getFullMarketQuoteWithHttpInfo(String instrumentKey, String apiVersion) throws ApiException {
+        com.squareup.okhttp.Call call = getFullMarketQuoteValidateBeforeCall(instrumentKey, apiVersion, null, null);
         Type localVarReturnType = new TypeToken<GetFullMarketQuoteResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
